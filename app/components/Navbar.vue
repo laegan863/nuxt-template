@@ -7,16 +7,16 @@
         <button 
           @click="$emit('toggle-mobile-menu')"
           class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 md:hidden">
-          <font-awesome-icon icon="bars" class="text-lg" />
+          <font-awesome-icon icon="bars" class="text-base" />
         </button>
 
         <!-- Desktop Sidebar Toggle -->
         <button 
           @click="$emit('toggle-sidebar')"
           class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 hidden md:block">
-          <font-awesome-icon icon="bars" class="text-lg" />
+          <font-awesome-icon icon="bars" class="text-base" />
         </button>
-        <p class="text-md font-bold text-gray-800 dark:text-white hidden sm:block">Welcome in Admin Dashboard!!!</p>
+        <p class="text-sm font-bold text-gray-800 dark:text-white hidden sm:block">Welcome in Admin Dashboard!!!</p>
       </div>
       
       <div class="flex items-center gap-2">
@@ -24,7 +24,7 @@
         <button 
           @click="toggleTheme"
           class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 relative">
-          <font-awesome-icon :icon="colorMode === 'dark' ? 'sun' : 'moon'" class="text-lg" />
+          <font-awesome-icon :icon="colorMode === 'dark' ? 'sun' : 'moon'" class="text-base" />
         </button>
         
         <!-- Notifications -->
@@ -32,7 +32,7 @@
           <button 
             @click="toggleNotifications"
             class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 relative">
-            <font-awesome-icon icon="bell" class="text-lg" />
+            <font-awesome-icon icon="bell" class="text-base" />
             <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
 
@@ -50,7 +50,7 @@
               class="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
             >
               <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Notifications</h3>
+                <h3 class="text-xs font-semibold text-gray-900 dark:text-white">Notifications</h3>
               </div>
               <div class="max-h-96 overflow-y-auto">
                 <div 
@@ -59,20 +59,20 @@
                   class="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b border-gray-100 dark:border-gray-700 last:border-b-0"
                 >
                   <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                          :class="notification.iconBg">
-                      <font-awesome-icon :icon="notification.icon" class="text-sm" :class="notification.iconColor" />
+                      <font-awesome-icon :icon="notification.icon" class="text-xs" :class="notification.iconColor" />
                     </div>
                     <div class="flex-1 min-w-0">
-                      <p class="text-sm font-medium text-gray-900 dark:text-white">{{ notification.title }}</p>
-                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ notification.time }}</p>
+                      <p class="text-xs font-medium text-gray-900 dark:text-white">{{ notification.title }}</p>
+                      <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-1">{{ notification.time }}</p>
                     </div>
                     <span v-if="!notification.read" class="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 mt-2"></span>
                   </div>
                 </div>
               </div>
-              <div class="px-4 py-3 border-t border-gray-200 dark:border-gray-700">
-                <button class="w-full text-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <div class="px-4 py-2.5 border-t border-gray-200 dark:border-gray-700">
+                <button class="w-full text-center text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                   View All Notifications
                 </button>
               </div>
@@ -95,8 +95,8 @@
               ></span>
             </div>
             <div class="hidden md:block text-left">
-              <p class="text-sm font-medium text-gray-900 dark:text-white">John Doe</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400">Admin</p>
+              <p class="text-xs font-medium text-gray-900 dark:text-white">John Doe</p>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400">Admin</p>
             </div>
           </button>
 
@@ -113,17 +113,17 @@
               v-if="isUserMenuOpen"
               class="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
             >
-              <button class="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                <font-awesome-icon icon="user" class="w-4 text-gray-500 dark:text-gray-400" />
+              <button class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <font-awesome-icon icon="user" class="w-3.5 text-gray-500 dark:text-gray-400" />
                 <span>Profile</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                <font-awesome-icon icon="cog" class="w-4 text-gray-500 dark:text-gray-400" />
+              <button class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <font-awesome-icon icon="cog" class="w-3.5 text-gray-500 dark:text-gray-400" />
                 <span>Settings</span>
               </button>
               <div class="border-t border-gray-200 dark:border-gray-700"></div>
-              <button class="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
-                <font-awesome-icon icon="sign-out-alt" class="w-4" />
+              <button class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                <font-awesome-icon icon="sign-out-alt" class="w-3.5" />
                 <span>Logout</span>
               </button>
             </div>

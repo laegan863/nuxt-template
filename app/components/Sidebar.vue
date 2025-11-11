@@ -10,9 +10,9 @@
     <div class="h-16 px-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800 flex items-center justify-center shadow-md">
-          <font-awesome-icon icon="crown" class="text-white text-lg" />
+          <font-awesome-icon icon="crown" class="text-white text-base" />
         </div>
-        <span v-if="!isCollapsed" class="text-xl font-bold text-gray-900 dark:text-white">
+        <span v-if="!isCollapsed" class="text-base font-bold text-gray-900 dark:text-white">
           Admin
         </span>
       </div>
@@ -21,7 +21,7 @@
         @click="$emit('close-mobile-menu')"
         class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300"
       >
-        <font-awesome-icon icon="times" class="text-lg" />
+        <font-awesome-icon icon="times" class="text-base" />
       </button>
     </div>
     
@@ -30,10 +30,10 @@
       <!-- Dashboard -->
       <NuxtLink 
         to="/dashboard" 
-        class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all group"
+        class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all group text-sm"
         active-class="!bg-[#545454] !text-white shadow-sm"
       >
-        <font-awesome-icon icon="home" class="text-lg min-w-[20px]" />
+        <font-awesome-icon icon="home" class="text-base min-w-[20px]" />
         <span v-if="!isCollapsed" class="font-medium">Dashboard</span>
       </NuxtLink>
       
@@ -41,17 +41,17 @@
       <div>
         <button
           @click="toggleDropdown"
-          class="w-full flex items-center justify-between px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+          class="w-full flex items-center justify-between px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm"
           :class="{ '!bg-[#545454] !text-white shadow-sm': isDropdownOpen || isPageActive }"
         >
           <div class="flex items-center gap-3">
-            <font-awesome-icon icon="folder" class="text-lg min-w-[20px]" />
+            <font-awesome-icon icon="folder" class="text-base min-w-[20px]" />
             <span v-if="!isCollapsed" class="font-medium">Pages</span>
           </div>
           <font-awesome-icon 
             v-if="!isCollapsed"
             icon="chevron-down" 
-            class="text-sm transition-transform duration-300"
+            class="text-xs transition-transform duration-300"
             :class="{ 'rotate-180': isDropdownOpen }"
           />
         </button>
@@ -71,18 +71,18 @@
           >
             <NuxtLink 
               to="/empty" 
-              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all"
               active-class="!text-white !bg-[#545454]"
             >
-              <font-awesome-icon icon="file" class="text-sm" />
+              <font-awesome-icon icon="file" class="text-xs" />
               <span>Empty Page</span>
             </NuxtLink>
             <NuxtLink 
               to="/dashboard" 
-              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-all"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-all"
               active-class="!text-gray-900 dark:!text-white !bg-gray-200 dark:!bg-gray-600"
             >
-              <font-awesome-icon icon="chart-bar" class="text-sm" />
+              <font-awesome-icon icon="chart-bar" class="text-xs" />
               <span>Analytics</span>
             </NuxtLink>
           </div>
@@ -92,10 +92,10 @@
       <!-- Settings -->
       <NuxtLink 
         to="/settings"
-        class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+        class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm"
         active-class="!bg-[#545454] !text-white shadow-sm"
       >
-        <font-awesome-icon icon="cog" class="text-lg min-w-[20px]" />
+        <font-awesome-icon icon="cog" class="text-base min-w-[20px]" />
         <span v-if="!isCollapsed" class="font-medium">Settings</span>
       </NuxtLink>
     </nav>
@@ -118,8 +118,8 @@
             ></span>
           </div>
           <div v-if="!isCollapsed" class="flex-1 text-left overflow-hidden">
-            <p class="text-sm font-medium text-gray-900 dark:text-white truncate">John Doe</p>
-            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Admin</p>
+            <p class="text-xs font-medium text-gray-900 dark:text-white truncate">John Doe</p>
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 truncate">Admin</p>
           </div>
           <font-awesome-icon 
             v-if="!isCollapsed"
