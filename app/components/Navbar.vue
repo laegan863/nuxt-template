@@ -5,6 +5,8 @@
       <div class="flex items-center gap-4">
         <!-- Mobile Menu Toggle -->
         <button 
+          type="button"
+          name="toggle"
           @click="$emit('toggle-mobile-menu')"
           class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 md:hidden">
           <font-awesome-icon icon="bars" class="text-base" />
@@ -12,6 +14,8 @@
 
         <!-- Desktop Sidebar Toggle -->
         <button 
+          type="button"
+          name="toggle"
           @click="$emit('toggle-sidebar')"
           class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 hidden md:block">
           <font-awesome-icon icon="bars" class="text-base" />
@@ -22,6 +26,8 @@
       <div class="flex items-center gap-2">
         <!-- Theme Toggle -->
         <button 
+          type="button"
+          name="toggle"
           @click="toggleTheme"
           class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 relative">
           <font-awesome-icon :icon="colorMode === 'dark' ? 'sun' : 'moon'" class="text-base" />
@@ -30,6 +36,8 @@
         <!-- Notifications -->
         <div class="relative">
           <button 
+            type="button"
+            name="toggle"
             @click="toggleNotifications"
             class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 relative">
             <font-awesome-icon icon="bell" class="text-base" />
@@ -83,6 +91,8 @@
         <!-- User Profile -->
         <div class="relative">
           <button 
+            type="button"
+            name="toggle"
             @click="toggleUserMenu"
             class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <div class="relative">
