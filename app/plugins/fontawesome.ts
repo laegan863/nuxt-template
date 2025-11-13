@@ -24,7 +24,19 @@ import {
   faChartBar,
   faBoxOpen,
   faSignOutAlt,
-  faTimes
+  faTimes,
+  faCircle,
+  faGauge,
+  faFilter,
+  faEye,
+  faEdit,
+  faTrash,
+  faSearch,
+  faInbox,
+  faCubes,
+  faTable,
+  faWindowRestore,
+  faPen
 } from '@fortawesome/free-solid-svg-icons'
 
 // This is important, we are going to let Nuxt worry about the CSS
@@ -55,7 +67,19 @@ library.add(
   faChartBar,
   faBoxOpen,
   faSignOutAlt,
-  faTimes
+  faTimes,
+  faCircle,
+  faGauge,
+  faFilter,
+  faEye,
+  faEdit,
+  faTrash,
+  faSearch,
+  faInbox,
+  faCubes,
+  faTable,
+  faWindowRestore,
+  faPen
 )
 
 export default defineNuxtPlugin((nuxtApp) => {

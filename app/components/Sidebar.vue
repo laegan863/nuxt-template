@@ -1,3 +1,91 @@
+<script setup>
+import { ref, computed } from 'vue'
+import { useRoute } from '#app'
+
+const route = useRoute()
+
+defineProps({
+  isCollapsed: {
+    type: Boolean,
+    default: false
+  },
+  isMobileMenuOpen: {
+    type: Boolean,
+    default: false
+  }
+})
+
+defineEmits(['close-mobile-menu'])
+
+const isUserMenuOpen = ref(false)
+const isUserActive = ref(true) // Toggle this to change online/offline status
+
+const sidebarData = [
+  {
+    icon: 'gauge',
+    name: 'Dashboard',
+    link: '/dashboard'
+  },
+  {
+    icon: 'folder',
+    name: 'Pages',
+    link: '#',
+    children: [
+      { icon: 'circle', name: 'Empty Page', link: '/empty' },
+      { icon: 'circle', name: 'Analytics', link: '/dashboard' },
+      { icon: 'circle', name: 'Form Components', link: '/forms' },
+      { icon: 'circle', name: 'UI Components', link: '/components' },
+      { icon: 'circle', name: 'Custom Table', link: '/table' }
+    ]
+  },
+  {
+    icon: 'cog',
+    name: 'Settings',
+    link: '/settings'
+  }
+]
+
+const openDropdowns = ref({})
+
+const toggleDropdown = (index) => {
+  openDropdowns.value[index] = !openDropdowns.value[index]
+}
+
+const isDropdownOpen = (index) => {
+  return openDropdowns.value[index] || false
+}
+
+const isMenuItemActive = (item) => {
+  if (item.children) {
+    return item.children.some(child => route.path === child.link)
+  }
+  return route.path === item.link
+}
+
+const toggleUserMenu = () => {
+  isUserMenuOpen.value = !isUserMenuOpen.value
+}
+</script>
+
+<style scoped>
+/* Custom scrollbar for sidebar */
+nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 2px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.7);
+}
+</style>
 <template>
   <aside 
     class="fixed left-0 top-0 h-screen z-[100] transition-all duration-300 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-lg flex flex-col"
@@ -27,77 +115,65 @@
     
     <!-- Navigation -->
     <nav class="p-3 space-y-2 overflow-y-auto flex-1">
-      <!-- Dashboard -->
-      <NuxtLink 
-        to="/dashboard" 
-        class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all group text-sm"
-        active-class="!bg-[#545454] !text-white shadow-sm"
-      >
-        <font-awesome-icon icon="home" class="text-base min-w-[20px]" />
-        <span v-if="!isCollapsed" class="font-medium">Dashboard</span>
-      </NuxtLink>
-      
-      <!-- Pages Dropdown -->
-      <div>
-        <button
-          @click="toggleDropdown"
-          class="w-full flex items-center justify-between px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm"
-          :class="{ '!bg-[#545454] !text-white shadow-sm': isDropdownOpen || isPageActive }"
-        >
-          <div class="flex items-center gap-3">
-            <font-awesome-icon icon="folder" class="text-base min-w-[20px]" />
-            <span v-if="!isCollapsed" class="font-medium">Pages</span>
-          </div>
-          <font-awesome-icon 
-            v-if="!isCollapsed"
-            icon="chevron-down" 
-            class="text-xs transition-transform duration-300"
-            :class="{ 'rotate-180': isDropdownOpen }"
-          />
-        </button>
-        
-        <!-- Dropdown Menu -->
-        <transition
-          enter-active-class="transition-all duration-300 ease-out"
-          leave-active-class="transition-all duration-200 ease-in"
-          enter-from-class="opacity-0 -translate-y-2"
-          enter-to-class="opacity-100 translate-y-0"
-          leave-from-class="opacity-100 translate-y-0"
-          leave-to-class="opacity-0 -translate-y-2"
-        >
-          <div 
-            v-if="isDropdownOpen && !isCollapsed"
-            class="mt-2 space-y-1 ml-3 pl-4 border-l-2 border-gray-200 dark:border-gray-700"
+      <!-- Dynamic Menu Items -->
+      <template v-for="(item, index) in sidebarData" :key="index">
+        <!-- Menu Item with Children (Dropdown) -->
+        <div v-if="item.children">
+          <button
+            @click="toggleDropdown(index)"
+            class="w-full flex items-center justify-between px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm"
+            :class="{ '!bg-[#545454] !text-white shadow-sm': isDropdownOpen(index) || isMenuItemActive(item) }"
           >
-            <NuxtLink 
-              to="/empty" 
-              class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all"
-              active-class="!text-white !bg-[#545454]"
+            <div class="flex items-center gap-3">
+              <font-awesome-icon :icon="item.icon" class="text-base min-w-[20px]" />
+              <span v-if="!isCollapsed" class="font-medium">{{ item.name }}</span>
+            </div>
+            <font-awesome-icon 
+              v-if="!isCollapsed"
+              icon="chevron-down" 
+              class="text-xs transition-transform duration-300"
+              :class="{ 'rotate-180': isDropdownOpen(index) }"
+            />
+          </button>
+          
+          <!-- Dropdown Menu -->
+          <transition
+            enter-active-class="transition-all duration-300 ease-out"
+            leave-active-class="transition-all duration-200 ease-in"
+            enter-from-class="opacity-0 -translate-y-2"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 -translate-y-2"
+          >
+            <div 
+              v-if="isDropdownOpen(index) && !isCollapsed"
+              class="mt-2 space-y-1 ml-3 pl-4 border-l-2 border-gray-200 dark:border-gray-700"
             >
-              <font-awesome-icon icon="file" class="text-xs" />
-              <span>Empty Page</span>
-            </NuxtLink>
-            <NuxtLink 
-              to="/dashboard" 
-              class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-all"
-              active-class="!text-gray-900 dark:!text-white !bg-gray-200 dark:!bg-gray-600"
-            >
-              <font-awesome-icon icon="chart-bar" class="text-xs" />
-              <span>Analytics</span>
-            </NuxtLink>
-          </div>
-        </transition>
-      </div>
-      
-      <!-- Settings -->
-      <NuxtLink 
-        to="/settings"
-        class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all text-sm"
-        active-class="!bg-[#545454] !text-white shadow-sm"
-      >
-        <font-awesome-icon icon="cog" class="text-base min-w-[20px]" />
-        <span v-if="!isCollapsed" class="font-medium">Settings</span>
-      </NuxtLink>
+              <NuxtLink 
+                v-for="(child, childIndex) in item.children"
+                :key="childIndex"
+                :to="child.link" 
+                class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all"
+                active-class="!text-white !bg-[#545454]"
+              >
+                <font-awesome-icon :icon="child.icon" class="text-[6px]" />
+                <span>{{ child.name }}</span>
+              </NuxtLink>
+            </div>
+          </transition>
+        </div>
+
+        <!-- Menu Item without Children -->
+        <NuxtLink 
+          v-else
+          :to="item.link" 
+          class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all group text-sm"
+          active-class="!bg-[#545454] !text-white shadow-sm"
+        >
+          <font-awesome-icon :icon="item.icon" class="text-base min-w-[20px]" />
+          <span v-if="!isCollapsed" class="font-medium">{{ item.name }}</span>
+        </NuxtLink>
+      </template>
     </nav>
 
     <!-- User Footer -->
@@ -161,60 +237,3 @@
     </div>
   </aside>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue'
-import { useRoute } from '#app'
-
-const route = useRoute()
-
-defineProps({
-  isCollapsed: {
-    type: Boolean,
-    default: false
-  },
-  isMobileMenuOpen: {
-    type: Boolean,
-    default: false
-  }
-})
-
-defineEmits(['close-mobile-menu'])
-
-const isDropdownOpen = ref(false)
-const isUserMenuOpen = ref(false)
-const isUserActive = ref(true) // Toggle this to change online/offline status
-
-// Check if any page in the dropdown is active
-const isPageActive = computed(() => {
-  return route.path === '/empty'
-})
-
-const toggleDropdown = () => {
-  isDropdownOpen.value = !isDropdownOpen.value
-}
-
-const toggleUserMenu = () => {
-  isUserMenuOpen.value = !isUserMenuOpen.value
-}
-</script>
-
-<style scoped>
-/* Custom scrollbar for sidebar */
-nav::-webkit-scrollbar {
-  width: 4px;
-}
-
-nav::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-nav::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.5);
-  border-radius: 2px;
-}
-
-nav::-webkit-scrollbar-thumb:hover {
-  background: rgba(107, 114, 128, 0.7);
-}
-</style>
