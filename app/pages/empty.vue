@@ -53,4 +53,15 @@
 definePageMeta({
   layout: false
 })
+
+useHead({
+  title: 'Empty Page - Admin Panel',
+  meta: [
+    { name: 'description', content: 'Empty page template ready for your custom content. Start building something amazing here!' },
+    { name: 'keywords', content: 'empty page, template, blank page' },
+    { property: 'og:title', content: 'Empty Page - Admin Panel' },
+    { property: 'og:description', content: 'Empty page template ready for your custom content.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 </script>

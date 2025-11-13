@@ -52,4 +52,15 @@
 definePageMeta({
   layout: false
 })
+
+useHead({
+  title: 'Settings - Admin Panel',
+  meta: [
+    { name: 'description', content: 'Manage your account settings and preferences. Update profile information, security settings, and personal details.' },
+    { name: 'keywords', content: 'settings, account, profile, security, preferences' },
+    { property: 'og:title', content: 'Settings - Admin Panel' },
+    { property: 'og:description', content: 'Manage your account settings and preferences.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 </script>

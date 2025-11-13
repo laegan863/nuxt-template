@@ -1,6 +1,7 @@
 <template>
   <button
     :type="type"
+    :name="name"
     :disabled="disabled || loading"
     class="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
     :class="[
@@ -43,6 +44,10 @@ const props = defineProps({
     type: String,
     default: 'button',
     validator: (value) => ['button', 'submit', 'reset'].includes(value)
+  },
+  name: {
+    type: String,
+    default: ''
   },
   variant: {
     type: String,

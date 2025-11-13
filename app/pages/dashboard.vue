@@ -3,6 +3,18 @@
 definePageMeta({
   layout: false
 })
+
+useHead({
+  title: 'Dashboard - Admin Panel',
+  meta: [
+    { name: 'description', content: 'View your dashboard statistics, recent activities, and quick actions. Monitor users, revenue, orders and ratings in real-time.' },
+    { name: 'keywords', content: 'dashboard, admin, statistics, analytics, management' },
+    { property: 'og:title', content: 'Dashboard - Admin Panel' },
+    { property: 'og:description', content: 'View your dashboard statistics, recent activities, and quick actions.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+
 const route = useRoute()
 // console.log(route.query.id)
 </script>

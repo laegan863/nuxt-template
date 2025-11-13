@@ -443,6 +443,17 @@ definePageMeta({
   layout: false
 })
 
+useHead({
+  title: 'Form Components - Admin Panel',
+  meta: [
+    { name: 'description', content: 'Beautiful, accessible form components with smooth animations, validation states, and dark mode support. Includes inputs, selects, textareas, checkboxes, radios, and buttons.' },
+    { name: 'keywords', content: 'forms, input, select, textarea, checkbox, radio, button, ui components' },
+    { property: 'og:title', content: 'Form Components - Admin Panel' },
+    { property: 'og:description', content: 'Beautiful, accessible form components with smooth animations and validation.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+
 const isSubmitting = ref(false)
 
 const formData = ref({

@@ -6,6 +6,17 @@ definePageMeta({
   layout: false
 })
 
+useHead({
+  title: 'UI Components - Admin Panel',
+  meta: [
+    { name: 'description', content: 'Advanced UI components including data tables, modals, and alerts for building professional interfaces. Fully customizable with dark mode support.' },
+    { name: 'keywords', content: 'ui components, data tables, modals, alerts, notifications' },
+    { property: 'og:title', content: 'UI Components - Admin Panel' },
+    { property: 'og:description', content: 'Advanced UI components for building professional interfaces.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+
 const alerts = ref({
   info: true,
   success: true,

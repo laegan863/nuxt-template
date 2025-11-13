@@ -2,6 +2,18 @@
 definePageMeta({
   layout: false
 })
+
+useHead({
+  title: 'Custom Table - Admin Panel',
+  meta: [
+    { name: 'description', content: 'Fully customizable slot-based data table with built-in search, pagination, and actions. Manage users with view, edit, and delete functionality.' },
+    { name: 'keywords', content: 'data table, custom table, crud, user management, pagination' },
+    { property: 'og:title', content: 'Custom Table - Admin Panel' },
+    { property: 'og:description', content: 'Fully customizable slot-based data table with built-in features.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+
 import { ref } from 'vue'
 
 // Sample data
