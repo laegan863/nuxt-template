@@ -18,7 +18,7 @@ defineProps({
 defineEmits(['close-mobile-menu'])
 
 const isUserMenuOpen = ref(false)
-const isUserActive = ref(true) // Toggle this to change online/offline status
+const isUserActive = ref(true)
 
 const sidebarData = [
   {
@@ -35,7 +35,7 @@ const sidebarData = [
       { icon: 'circle', name: 'Analytics', link: '/dashboard' },
       { icon: 'circle', name: 'Form Components', link: '/forms' },
       { icon: 'circle', name: 'UI Components', link: '/components' },
-      { icon: 'circle', name: 'Custom Table', link: '/table' }
+      { icon: 'circle', name: 'Custom Table', link: '/admin/table' }
     ]
   },
   {

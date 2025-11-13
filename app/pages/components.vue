@@ -76,19 +76,21 @@ const handleDelete = () => {
 
       <div class="space-y-6">
         <!-- Alerts Section -->
-        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="relative">
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl blur-md opacity-50"></div>
-              <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center shadow-xl">
-                <font-awesome-icon icon="bell" class="text-white text-xl" />
+        <BaseCard>
+          <template #header>
+            <div class="flex items-center gap-4">
+              <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl blur-md opacity-50"></div>
+                <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center shadow-xl">
+                  <font-awesome-icon icon="bell" class="text-white text-xl" />
+                </div>
+              </div>
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Alerts</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Notification messages with different types</p>
               </div>
             </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Alerts</h2>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Notification messages with different types</p>
-            </div>
-          </div>
+          </template>
 
           <div class="space-y-4">
             <BaseAlert
@@ -141,140 +143,8 @@ const handleDelete = () => {
               />
             </div>
           </div>
-        </div>
+        </BaseCard>
 
-        <!-- Modals Section -->
-        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="relative">
-              <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl blur-md opacity-50"></div>
-              <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-xl">
-                <font-awesome-icon icon="window-restore" class="text-white text-xl" />
-              </div>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Modals</h2>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Dialog boxes with different sizes</p>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            <BaseButton 
-              variant="primary" 
-              label="Small Modal" 
-              @click="modals.small = true"
-            />
-            <BaseButton 
-              variant="secondary" 
-              label="Medium Modal" 
-              @click="modals.medium = true"
-            />
-            <BaseButton 
-              variant="success" 
-              label="Large Modal" 
-              @click="modals.large = true"
-            />
-            <BaseButton 
-              variant="info" 
-              label="With Footer" 
-              @click="modals.withFooter = true"
-            />
-            <BaseButton 
-              variant="warning" 
-              label="Confirmation" 
-              @click="modals.confirmation = true"
-            />
-          </div>
-
-          <!-- Modal Components -->
-          <BaseModal
-            v-model="modals.small"
-            size="sm"
-            title="Small Modal"
-            subtitle="This is a small sized modal"
-          >
-            <p class="text-gray-600 dark:text-gray-400">
-              This is a small modal dialog. Perfect for simple messages or confirmations.
-            </p>
-          </BaseModal>
-
-          <BaseModal
-            v-model="modals.medium"
-            size="md"
-            title="Medium Modal"
-            subtitle="This is a medium sized modal"
-          >
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
-              This is a medium modal dialog with more content space.
-            </p>
-            <div class="space-y-3">
-              <BaseInput
-                v-model="modalFormData.name"
-                label="Name"
-                placeholder="Enter your name"
-              />
-              <BaseInput
-                v-model="modalFormData.email"
-                type="email"
-                label="Email"
-                placeholder="you@example.com"
-              />
-            </div>
-          </BaseModal>
-
-          <BaseModal
-            v-model="modals.large"
-            size="lg"
-            title="Large Modal"
-            subtitle="This is a large sized modal with more content"
-          >
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
-              This is a large modal dialog suitable for forms and detailed content.
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-              <BaseInput label="First Name" placeholder="John" />
-              <BaseInput label="Last Name" placeholder="Doe" />
-              <BaseInput label="Email" type="email" placeholder="john@example.com" />
-              <BaseInput label="Phone" type="tel" placeholder="+1 234 567 8900" />
-              <div class="col-span-2">
-                <BaseTextarea label="Message" placeholder="Your message..." :rows="4" />
-              </div>
-            </div>
-          </BaseModal>
-
-          <BaseModal
-            v-model="modals.withFooter"
-            title="Modal with Footer"
-            subtitle="Custom footer with action buttons"
-          >
-            <template #default>
-              <p class="text-gray-600 dark:text-gray-400">
-                This modal includes a footer with custom action buttons.
-              </p>
-            </template>
-            <template #footer>
-              <BaseButton variant="ghost" label="Cancel" @click="modals.withFooter = false" />
-              <BaseButton variant="primary" label="Save Changes" @click="handleModalSave" />
-            </template>
-          </BaseModal>
-
-          <BaseModal
-            v-model="modals.confirmation"
-            size="sm"
-            title="Delete Item?"
-            subtitle="This action cannot be undone"
-          >
-            <template #default>
-              <p class="text-gray-600 dark:text-gray-400">
-                Are you sure you want to delete this item? This action is permanent and cannot be reversed.
-              </p>
-            </template>
-            <template #footer>
-              <BaseButton variant="ghost" label="Cancel" @click="modals.confirmation = false" />
-              <BaseButton variant="danger" label="Delete" prefix-icon="trash" @click="handleDelete" />
-            </template>
-          </BaseModal>
-        </div>
       </div>
     </div>
   </NuxtLayout>

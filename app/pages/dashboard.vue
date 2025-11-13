@@ -1,3 +1,12 @@
+
+<script setup>
+// import { useRoute } from 'vue-router';
+// definePageMeta({
+//   layout: false
+// // })
+// const route = useRoute()
+// console.log(route.query.id)
+</script>
 <template>
   <NuxtLayout name="admin">
     <div class="space-y-6">
@@ -136,8 +145,3 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-definePageMeta({
-  layout: false
-})
-</script>
