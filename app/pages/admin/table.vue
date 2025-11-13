@@ -35,6 +35,7 @@ const showAddUserModal = ref(false);
 const handleView = (user) => {
   // selectedUser.value = user
   // showViewModal.value = true
+  // console.log('Viewing user:', user)
   navigateTo('/dashboard?id=1')
 }
 

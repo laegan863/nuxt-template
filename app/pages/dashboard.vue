@@ -1,14 +1,14 @@
 
 <script setup>
-// import { useRoute } from 'vue-router';
-// definePageMeta({
-//   layout: false
-// // })
-// const route = useRoute()
+definePageMeta({
+  layout: false
+})
+const route = useRoute()
 // console.log(route.query.id)
 </script>
 <template>
   <NuxtLayout name="admin">
+    
     <div class="space-y-6">
       <!-- Breadcrumbs -->
       <Breadcrumbs :items="[{ label: 'Dashboard' }]" />
@@ -18,7 +18,7 @@
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Dashboard</h1>
         <p class="text-gray-600 dark:text-gray-400">Welcome back! Here's what's happening today.</p>
       </div>
-
+      {{ route.query.id }}
       <!-- Stats Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
         <!-- Total Users -->
